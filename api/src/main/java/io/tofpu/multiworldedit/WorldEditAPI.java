@@ -7,8 +7,11 @@ public final class WorldEditAPI {
     private static WorldEdit worldEdit;
     private static WorldEditType worldEditType;
 
-    public static WorldEdit load(final Plugin plugin, String worldEditVersion) {
+    public static WorldEdit load(final Plugin plugin) {
         final String version = plugin.getServer().getBukkitVersion().split("-")[0];
+        final Plugin worldEditPlugin = Bukkit.getPluginManager()
+                .getPlugin("WorldEdit");
+        final String worldEditVersion = worldEditPlugin.getDescription().getVersion();
 
         plugin.getLogger().info("Searching for a compatible version of WorldEdit...");
         switch (version) {
@@ -18,7 +21,7 @@ public final class WorldEditAPI {
                     incompatiblePlugin(plugin, worldEditVersion);
                     break;
                 }
-                worldEdit = new WorldEditV6();
+                WorldEditAPI.worldEdit = new WorldEditV6();
                 worldEditType = WorldEditType.V6;
                 break;
             case "1.12.2":
@@ -29,7 +32,7 @@ public final class WorldEditAPI {
                     incompatiblePlugin(plugin, worldEditVersion);
                     break;
                 }
-                worldEdit = new WorldEditV7();
+                WorldEditAPI.worldEdit = new WorldEditV7();
                 worldEditType = WorldEditType.V7;
                 break;
             default:
@@ -41,10 +44,10 @@ public final class WorldEditAPI {
                 break;
         }
 
-        if (worldEdit != null) {
+        if (WorldEditAPI.worldEdit != null) {
             plugin.getLogger().info("Found compatible version of WorldEdit for v" + version);
         }
-        return worldEdit;
+        return WorldEditAPI.worldEdit;
     }
 
     private static void incompatiblePlugin(final Plugin plugin, final String version) {
