@@ -11,6 +11,11 @@ public final class WorldEditAPI {
         final String version = plugin.getServer().getBukkitVersion().split("-")[0];
         final Plugin worldEditPlugin = Bukkit.getPluginManager()
                 .getPlugin("WorldEdit");
+        
+        if (worldEditPlugin == null) {
+            return null;
+        }
+
         final String worldEditVersion = worldEditPlugin.getDescription().getVersion();
 
         plugin.getLogger().info("Searching for a compatible version of WorldEdit...");
