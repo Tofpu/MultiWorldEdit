@@ -1,7 +1,6 @@
 package io.tofpu.multiworldedit;
 
 import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.regions.Region;
 
 public final class ClipboardWrapperV7 implements ClipboardWrapper {
     private final Clipboard clipboard;

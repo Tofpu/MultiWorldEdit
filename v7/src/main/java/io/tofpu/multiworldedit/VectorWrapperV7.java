@@ -30,6 +30,16 @@ public final class VectorWrapperV7 implements VectorWrapper {
     }
 
     @Override
+    public double toYaw() {
+        return vector.toYaw();
+    }
+
+    @Override
+    public double toPitch() {
+        return vector.toPitch();
+    }
+
+    @Override
     public VectorWrapper add(final double x, final double y, final double z) {
         return new VectorWrapperV7(vector.add(x, y, z));
     }
