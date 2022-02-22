@@ -101,7 +101,7 @@ To get started
         <dependency>
             <groupId>com.github.tofpu.MultiWorldEdit</groupId>
             <artifactId>multiworldedit-api</artifactId>
-            <version>969bb41a2b</version>
+            <version>c44e5ca198</version>
         </dependency>
       </dependencies>
 ```
