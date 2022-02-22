@@ -99,7 +99,7 @@ To get started
     
       <dependencies>
         <dependency>
-            <groupId>com.github.tofpu.MultiWorldEdit</groupId>
+            <groupId>com.github.Tofpu.MultiWorldEdit</groupId>
             <artifactId>multiworldedit-api</artifactId>
             <version>c44e5ca198</version>
         </dependency>
