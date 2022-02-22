@@ -99,14 +99,14 @@ To get started
     
       <dependencies>
         <dependency>
-            <groupId>io.tofpu</groupId>
+            <groupId>com.github.tofpu.MultiWorldEdit</groupId>
             <artifactId>multiworldedit-api</artifactId>
-            <version>1.0.0</version>
+            <version>969bb41a2b</version>
         </dependency>
       </dependencies>
 ```
 
-2. Load the API on onLoad/onEnable via `WorldEditAPI.load(Plugin)` method (It's recommended to softdepend/depend WorldEdit on your plugin.yml).
+2. Load the library on onLoad/onEnable via `WorldEditAPI.load(Plugin)` method (It's recommended to softdepend/depend WorldEdit on your plugin.yml).
 
 Contributors
 ---
