@@ -25,12 +25,12 @@ public final class VectorWrapperV6 implements VectorWrapper {
     }
 
     @Override
-    public double toYaw() {
+    public float toYaw() {
         return vector.toYaw();
     }
 
     @Override
-    public double toPitch() {
+    public float toPitch() {
         return vector.toPitch();
     }
 

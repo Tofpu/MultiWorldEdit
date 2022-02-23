@@ -3,11 +3,11 @@ package io.tofpu.multiworldedit;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
-public final class WorldEditAPI {
-    private static WorldEdit worldEdit;
-    private static WorldEditType worldEditType;
+public final class MultiWorldEditAPI {
+    private static MultiWorldEdit multiWorldEdit;
+    private static MultiWorldEditType multiWorldEditType;
 
-    public static WorldEdit load(final Plugin plugin) {
+    public static MultiWorldEdit load(final Plugin plugin) {
         final String version = plugin.getServer().getBukkitVersion().split("-")[0];
         final Plugin worldEditPlugin = Bukkit.getPluginManager()
                 .getPlugin("WorldEdit");
@@ -26,8 +26,8 @@ public final class WorldEditAPI {
                     incompatiblePlugin(plugin, worldEditVersion);
                     break;
                 }
-                WorldEditAPI.worldEdit = new WorldEditV6();
-                worldEditType = WorldEditType.V6;
+                MultiWorldEditAPI.multiWorldEdit = new MultiWorldEditV6();
+                multiWorldEditType = MultiWorldEditType.V6;
                 break;
             case "1.12.2":
             case "1.16.5":
@@ -37,8 +37,8 @@ public final class WorldEditAPI {
                     incompatiblePlugin(plugin, worldEditVersion);
                     break;
                 }
-                WorldEditAPI.worldEdit = new WorldEditV7();
-                worldEditType = WorldEditType.V7;
+                MultiWorldEditAPI.multiWorldEdit = new MultiWorldEditV7();
+                multiWorldEditType = MultiWorldEditType.V7;
                 break;
             default:
                 plugin.getLogger().info("Found no compatible version for server " +
@@ -49,10 +49,10 @@ public final class WorldEditAPI {
                 break;
         }
 
-        if (WorldEditAPI.worldEdit != null) {
+        if (MultiWorldEditAPI.multiWorldEdit != null) {
             plugin.getLogger().info("Found compatible version of WorldEdit for v" + version);
         }
-        return WorldEditAPI.worldEdit;
+        return MultiWorldEditAPI.multiWorldEdit;
     }
 
     private static void incompatiblePlugin(final Plugin plugin, final String version) {
@@ -62,11 +62,11 @@ public final class WorldEditAPI {
         Bukkit.getPluginManager().disablePlugin(plugin);
     }
 
-    public static WorldEditType getWorldEditType() {
-        return worldEditType;
+    public static MultiWorldEditType getWorldEditType() {
+        return multiWorldEditType;
     }
 
-    public static WorldEdit getWorldEdit() {
-        return worldEdit;
+    public static MultiWorldEdit getWorldEdit() {
+        return multiWorldEdit;
     }
 }

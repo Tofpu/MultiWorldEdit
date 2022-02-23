@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public final class WorldEditV7 implements WorldEdit {
+public final class MultiWorldEditV7 implements MultiWorldEdit {
     @Override
     public Clipboard read(final File file) {
         final ClipboardFormat format = ClipboardFormats.findByFile(file);

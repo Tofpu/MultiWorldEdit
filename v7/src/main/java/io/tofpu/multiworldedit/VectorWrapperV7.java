@@ -30,13 +30,13 @@ public final class VectorWrapperV7 implements VectorWrapper {
     }
 
     @Override
-    public double toYaw() {
-        return vector.toYaw();
+    public float toYaw() {
+        return (float) vector.toYaw();
     }
 
     @Override
-    public double toPitch() {
-        return vector.toPitch();
+    public float toPitch() {
+        return (float) Math.toDegrees(vector.toPitch());
     }
 
     @Override

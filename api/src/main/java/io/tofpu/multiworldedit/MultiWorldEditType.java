@@ -1,5 +1,5 @@
 package io.tofpu.multiworldedit;
 
-public enum WorldEditType {
+public enum MultiWorldEditType {
     V6, V7;
 }

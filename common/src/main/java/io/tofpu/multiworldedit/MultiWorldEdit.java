@@ -7,7 +7,7 @@ import com.sk89q.worldedit.world.World;
 
 import java.io.File;
 
-public interface WorldEdit {
+public interface MultiWorldEdit {
     Clipboard read(final File file);
 
     PasteBuilderWrapper create(final Clipboard clipboard, final EditSession session,

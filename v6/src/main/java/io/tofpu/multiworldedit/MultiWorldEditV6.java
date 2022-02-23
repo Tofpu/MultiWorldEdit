@@ -15,7 +15,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 
-public final class WorldEditV6 implements WorldEdit {
+public final class MultiWorldEditV6 implements MultiWorldEdit {
     @Override
     public Clipboard read(final File file) {
         try {
