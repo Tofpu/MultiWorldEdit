@@ -66,7 +66,7 @@ public final class MultiWorldEditAPI {
         return multiWorldEditType;
     }
 
-    public static MultiWorldEdit getWorldEdit() {
+    public static MultiWorldEdit getMultiWorldEdit() {
         return multiWorldEdit;
     }
 }
