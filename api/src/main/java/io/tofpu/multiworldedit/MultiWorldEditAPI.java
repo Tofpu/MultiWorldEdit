@@ -8,7 +8,15 @@ public final class MultiWorldEditAPI {
     private static MultiWorldEditType multiWorldEditType;
 
     public static MultiWorldEdit load(final Plugin plugin) {
-        final String version = plugin.getServer().getBukkitVersion().split("-")[0];
+        final String version = plugin.getServer()
+                .getBukkitVersion()
+                .split("-")[0];
+        final String[] versionArgs =
+                version.split("\\.");
+
+        final String major = versionArgs[0];
+        final String minor = versionArgs[1];
+
         final Plugin worldEditPlugin = Bukkit.getPluginManager()
                 .getPlugin("WorldEdit");
         
@@ -18,40 +26,27 @@ public final class MultiWorldEditAPI {
 
         final String worldEditVersion = worldEditPlugin.getDescription().getVersion();
 
+        System.out.println(major + "." + minor);
+
         plugin.getLogger().info("Searching for a compatible version of WorldEdit...");
-        switch (version) {
-            case "1.8":
-            case "1.8.8":
-                if (!worldEditVersion.startsWith("6")) {
-                    incompatiblePlugin(plugin, worldEditVersion);
-                    break;
-                }
-                MultiWorldEditAPI.multiWorldEdit = new MultiWorldEditV6();
-                multiWorldEditType = MultiWorldEditType.V6;
-                break;
-            case "1.12.2":
-            case "1.16.5":
-            case "1.17.1":
-            case "1.18.1":
-                if (!worldEditVersion.startsWith("7")) {
-                    incompatiblePlugin(plugin, worldEditVersion);
-                    break;
-                }
-                MultiWorldEditAPI.multiWorldEdit = new MultiWorldEditV7();
-                multiWorldEditType = MultiWorldEditType.V7;
-                break;
-            default:
-                plugin.getLogger().info("Found no compatible version for server " +
-                                        "version " + version + " and WorldEdit version " +
-                                        "v" + worldEditVersion + "! disabling the " +
-                                        "plugin now!");
-                Bukkit.getPluginManager().disablePlugin(plugin);
-                break;
+
+        if (Integer.parseInt(minor) < 12) {
+            if (!worldEditVersion.startsWith("6")) {
+                incompatiblePlugin(plugin, worldEditVersion);
+                return null;
+            }
+            MultiWorldEditAPI.multiWorldEdit = new MultiWorldEditV6();
+            multiWorldEditType = MultiWorldEditType.V6;
+        } else {
+            if (worldEditVersion.startsWith("6")) {
+                incompatiblePlugin(plugin, worldEditVersion);
+                return null;
+            }
+            MultiWorldEditAPI.multiWorldEdit = new MultiWorldEditV7();
+            multiWorldEditType = MultiWorldEditType.V7;
         }
 
-        if (MultiWorldEditAPI.multiWorldEdit != null) {
-            plugin.getLogger().info("Found compatible version of WorldEdit for v" + version);
-        }
+        plugin.getLogger().info("Found compatible version of WorldEdit for v" + version);
         return MultiWorldEditAPI.multiWorldEdit;
     }
 
