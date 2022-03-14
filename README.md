@@ -33,7 +33,7 @@ Each wrapper were created for multi-version cross comatibility in mind - here's 
   // the schematic file
   final File schematicFile = new File("test.schematic");
   // reading the schematic file with our library - for cross-compatibility purposes
-  final Clipboard clipboard = WorldEditAPI.getWorldEdit()
+  final Clipboard clipboard = MultiWorldEditAPI.getMultiWorldEdit()
                     .read(schematicFile);
 ```
 
@@ -49,13 +49,13 @@ Each wrapper were created for multi-version cross comatibility in mind - here's 
 
         // Using the edit session wrapper for cross-compatibility purposes
         // WARNING: you are required to close the session on v7 for the blocks operation to be completed
-        try (final EditSessionWrapper editSessionWrapper = WorldEditAPI.getWorldEdit()
+        try (final EditSessionWrapper editSessionWrapper = MultiWorldEditAPI.getMultiWorldEdit()
                 .create(world, -1)) {
             // retrieving our actual session
             final EditSession editSession = editSessionWrapper.to();
 
             // creating our operation with the library - for cross-compatibility
-            final Operation operation = WorldEditAPI.getWorldEdit()
+            final Operation operation = MultiWorldEditAPI.getWorldEdit()
                     .create(clipboard, editSession, world)
                     .to(x, y, z)
                     .ignoreAirBlocks(true)
@@ -79,7 +79,7 @@ Each wrapper were created for multi-version cross comatibility in mind - here's 
         final VectorWrapper origin = clipboardWrapper.getOrigin();
 
         // wraping our region object with RegionWrapper
-        final RegionWrapper regionWrapper = worldEdit.create(clipboardWrapper.to().getRegion());
+        final RegionWrapper regionWrapper = MultiWorldEditAPI.create(clipboardWrapper.to().getRegion());
         // retrieving the clipboard's maximumpoint with RegionWrapper's wrapper
         final VectorWrapper maximumVector = regionWrapper.getMaximumPoint();
 ```
@@ -101,7 +101,7 @@ To get started
         <dependency>
             <groupId>com.github.Tofpu.MultiWorldEdit</groupId>
             <artifactId>multiworldedit-api</artifactId>
-            <version>c44e5ca198</version>
+            <version>321a69d3e8</version>
         </dependency>
       </dependencies>
 ```
