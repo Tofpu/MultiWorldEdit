@@ -13,8 +13,6 @@ public final class MultiWorldEditAPI {
                 .split("-")[0];
         final String[] versionArgs =
                 version.split("\\.");
-
-        final String major = versionArgs[0];
         final String minor = versionArgs[1];
 
         final Plugin worldEditPlugin = Bukkit.getPluginManager()
@@ -23,13 +21,9 @@ public final class MultiWorldEditAPI {
         if (worldEditPlugin == null) {
             return null;
         }
-
         final String worldEditVersion = worldEditPlugin.getDescription().getVersion();
-
-        System.out.println(major + "." + minor);
-
         plugin.getLogger().info("Searching for a compatible version of WorldEdit...");
-
+        
         if (Integer.parseInt(minor) < 12) {
             if (!worldEditVersion.startsWith("6")) {
                 incompatiblePlugin(plugin, worldEditVersion);
