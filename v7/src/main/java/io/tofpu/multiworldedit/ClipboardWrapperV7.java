@@ -28,4 +28,9 @@ public final class ClipboardWrapperV7 implements ClipboardWrapper {
     public VectorWrapper getMaximumPoint() {
         return new VectorWrapperV7(this.clipboard.getMaximumPoint());
     }
+
+    @Override
+    public RegionWrapper region() {
+        return new RegionWrapperV7(this.clipboard.getRegion());
+    }
 }

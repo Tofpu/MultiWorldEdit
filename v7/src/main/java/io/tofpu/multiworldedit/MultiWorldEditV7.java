@@ -15,14 +15,14 @@ import java.io.IOException;
 
 public final class MultiWorldEditV7 implements MultiWorldEdit {
     @Override
-    public Clipboard read(final File file) {
+    public ClipboardWrapper read(final File file) {
         final ClipboardFormat format = ClipboardFormats.findByFile(file);
 
         if (format == null) {
             return null;
         }
         try {
-            return format.getReader(new FileInputStream(file)).read();
+            return create(format.getReader(new FileInputStream(file)).read());
         } catch (IOException e) {
             e.printStackTrace();
         }

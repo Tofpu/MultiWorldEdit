@@ -17,10 +17,10 @@ import java.util.zip.GZIPInputStream;
 
 public final class MultiWorldEditV6 implements MultiWorldEdit {
     @Override
-    public Clipboard read(final File file) {
+    public ClipboardWrapper read(final File file) {
         try {
             final FileInputStream inputStream = new FileInputStream(file);
-            return new SchematicReader(new NBTInputStream(new GZIPInputStream(inputStream))).read(null);
+            return create(new SchematicReader(new NBTInputStream(new GZIPInputStream(inputStream))).read(null));
         } catch (IOException e) {
             e.printStackTrace();
         }
