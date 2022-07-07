@@ -7,11 +7,10 @@
     <parent>
         <groupId>io.tofpu</groupId>
         <artifactId>multiworldedit</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>multiworldedit-v7</artifactId>
-    <version>1.0.0</version>
 
     <name>v7</name>
 
