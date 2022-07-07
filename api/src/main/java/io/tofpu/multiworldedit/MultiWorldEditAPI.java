@@ -24,7 +24,7 @@ public final class MultiWorldEditAPI {
         final String worldEditVersion = worldEditPlugin.getDescription().getVersion();
         plugin.getLogger().info("Searching for a compatible version of WorldEdit...");
         
-        if (Integer.parseInt(minor) < 12) {
+        if (Integer.parseInt(minor) <= 12) {
             if (!worldEditVersion.startsWith("6")) {
                 incompatiblePlugin(plugin, worldEditVersion);
                 return null;
