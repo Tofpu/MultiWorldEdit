@@ -7,10 +7,10 @@
     <parent>
         <groupId>io.tofpu</groupId>
         <artifactId>multiworldedit</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
     <artifactId>multiworldedit-api</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <build>
         <plugins>
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>io.tofpu</groupId>
             <artifactId>multiworldedit-v6</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.sk89.worldedit</groupId>
@@ -64,7 +64,7 @@
         <dependency>
             <groupId>io.tofpu</groupId>
             <artifactId>multiworldedit-v7</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.sk89.worldedit</groupId>
