@@ -88,8 +88,15 @@
     <dependencies>
         <dependency>
             <groupId>io.tofpu</groupId>
-            <artifactId>multiworldedit-common</artifactId>
-            <version>1.0.2</version>
+            <artifactId>multiworldedit-api</artifactId>
+            <version>1.1.0</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sk89q</groupId>
+                    <artifactId>worldedit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

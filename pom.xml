@@ -10,9 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>common</module>
+        <module>api</module>
         <module>v6</module>
         <module>v7</module>
-        <module>api</module>
     </modules>
 </project>

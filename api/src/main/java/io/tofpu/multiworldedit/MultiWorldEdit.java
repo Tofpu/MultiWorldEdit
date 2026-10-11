@@ -16,4 +16,6 @@ public interface MultiWorldEdit {
     VectorWrapper create(final double x, final double y, final double z);
     ClipboardWrapper create(final Clipboard clipboard);
     RegionWrapper create(final Region region);
+
+    MultiWorldEditVersion version();
 }
