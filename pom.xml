@@ -13,5 +13,6 @@
         <module>api</module>
         <module>v6</module>
         <module>v7</module>
+        <module>loader</module>
     </modules>
 </project>
