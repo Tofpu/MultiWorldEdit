@@ -30,7 +30,7 @@ public final class ClipboardWrapperV7 implements ClipboardWrapper {
     }
 
     @Override
-    public RegionWrapper region() {
+    public RegionWrapper getRegion() {
         return new RegionWrapperV7(this.clipboard.getRegion());
     }
 }
