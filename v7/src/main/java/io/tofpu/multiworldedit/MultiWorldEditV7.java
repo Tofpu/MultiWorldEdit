@@ -53,4 +53,9 @@ public final class MultiWorldEditV7 implements MultiWorldEdit {
     public RegionWrapper create(final Region region) {
         return new RegionWrapperV7(region);
     }
+
+    @Override
+    public MultiWorldEditVersion version() {
+        return MultiWorldEditVersion.V7;
+    }
 }
