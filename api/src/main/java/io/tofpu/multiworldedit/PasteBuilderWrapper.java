@@ -14,19 +14,19 @@ public interface PasteBuilderWrapper {
      * @param z z location
      * @return this builder instance
      */
-    public PasteBuilderWrapper to(final int x, final int y, final int z);
+    PasteBuilderWrapper to(final int x, final int y, final int z);
 
     /**
      * Set whether air blocks in the source are skipped over when pasting.
      *
      * @return this builder instance
      */
-    public PasteBuilderWrapper ignoreAirBlocks(boolean ignoreAirBlocks);
+    PasteBuilderWrapper ignoreAirBlocks(boolean ignoreAirBlocks);
 
     /**
      * Build the operation.
      *
      * @return the operation
      */
-    public Operation build();
+    Operation build();
 }

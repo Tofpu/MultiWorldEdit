@@ -1,113 +1,111 @@
 <div align="center">
-  <h1>MutliWorldEdit</h2>
-  <p>A library that abstracts over WorldEdit's API to bring cross-version compatibility.</p>
+  <h1>MultiWorldEdit</h1>
+  <p>A lightweight library that abstracts over WorldEdit's API to bring cross-version compatibility for v6 and v7.</p>
 </div>
 
-The MultiWorldEdit library as of now only supports WorldEdit's API v6 & v7. It was made for the [SpeedBridge2](https://github.com/Tofpu/SpeedBridge2) project.
-
-<details>
-  <summary>Library Details</summary>
-
-### Wrappers
-The library current has the following wrappers:
-- __VectorWrapper__
-- __ClipboardWrapper__
-- __RegionWrapper__
-- __EditSessionWrapper__
-- __PasteBuilderWrapper__
-
-Each wrapper were created for multi-version cross comatibility in mind - here's the reasons for whose are interested:  
-- __VectorWrapper__ - The removal of Vector class on v6 version
-- __ClipboardWrapper__ - To wrap Clipboard's vector's method (getOrigin, getMinimumPoint, and getMaximumPoint)  
-- __RegionWrapper__ - To wrap Clipboard's vector's method (getMinimumPoint, and getMaximumPoint)  
-- __EditSessionWrapper__ - EditSession were not closeable on v6 version, but were required to be closed on v7 version for the changes to be reflected  
-- __PasteBuilderWrapper__ - Clipboard#createPaste & PasteBuilder#to methods were not consistant between v6, and v7 versions  
-
-</details>
-
-<details>
-  <summary>Examples</summary>
-
-  ### Retrieve a clipboard
-```java
-  // the schematic file
-  final File schematicFile = new File("test.schematic");
-  // reading the schematic file with our library - for cross-compatibility purposes
-  final Clipboard clipboard = MultiWorldEditAPI.getMultiWorldEdit()
-                    .read(schematicFile);
-```
-
-### Paste a schematic
-```java
-        // WorldEdit's world
-        final World world = ...;
-        // The schematic clipboard we'll be pasting below
-        final Clipboard clipboard = ...;
-
-        // the location where the schematic should be pasted at
-        final int x, y, z;
-
-        // Using the edit session wrapper for cross-compatibility purposes
-        // WARNING: you are required to close the session on v7 for the blocks operation to be completed
-        try (final EditSessionWrapper editSessionWrapper = MultiWorldEditAPI.getMultiWorldEdit()
-                .create(world, -1)) {
-            // retrieving our actual session
-            final EditSession editSession = editSessionWrapper.to();
-
-            // creating our operation with the library - for cross-compatibility
-            final Operation operation = MultiWorldEditAPI.getWorldEdit()
-                    .create(clipboard, editSession, world)
-                    .to(x, y, z)
-                    .ignoreAirBlocks(true)
-                    .build();
-
-            // starting the operation process
-            Operations.completeLegacy(operation);
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
-```
-
-### Other
-```java
-        // our clipboard experiment for the day
-        final Clipboard clipboard = ...;
-        // wraping our clipboard object with ClipboardWrapper
-        final ClipboardWrapper clipboardWrapper = worldEdit.create(clipboard);
-
-        // retrieving the regions's origin with ClipboardWrapper's wrapper
-        final VectorWrapper origin = clipboardWrapper.getOrigin();
-
-        // wraping our region object with RegionWrapper
-        final RegionWrapper regionWrapper = MultiWorldEditAPI.create(clipboardWrapper.to().getRegion());
-        // retrieving the clipboard's maximumpoint with RegionWrapper's wrapper
-        final VectorWrapper maximumVector = regionWrapper.getMaximumPoint();
-```
-</details>
-
-To get started
 ---
-1. Load the library with Maven/Gradle.
+
+## About
+
+**MultiWorldEdit** is a utility library designed to handle API differences between WorldEdit v6 and v7 seamlessly. It was originally built to power the [SpeedBridge2](https://github.com/Tofpu/SpeedBridge2) project.
+
+---
+
+## Installation
+
+Add JitPack to your repository and include the dependency in your `pom.xml` (or equivalent Gradle configuration):
 
 ```xml
-      <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-      </repositories>
-    
-      <dependencies>
-        <dependency>
-            <groupId>com.github.Tofpu.MultiWorldEdit</groupId>
-            <artifactId>multiworldedit-api</artifactId>
-            <version>321a69d3e8</version>
-        </dependency>
-      </dependencies>
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>[https://jitpack.io](https://jitpack.io)</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.Tofpu.MultiWorldEdit</groupId>
+        <artifactId>multiworldedit-api</artifactId>
+        <version>[VERSION]</version>
+    </dependency>
+</dependencies>
+
 ```
 
-2. Load the library on onLoad/onEnable via `WorldEditAPI.load(Plugin)` method (It's recommended to softdepend/depend WorldEdit on your plugin.yml).
-
-Contributors
 ---
-This library was mainly made for my personal projects, therefore do not expect this library to cover everything. If you wanted to contribute something, you're very welcome to do so! :)
+
+## Quick Start
+
+Initialize the library inside your plugin's `onLoad` or `onEnable` method (it is recommended to add WorldEdit as a `softdepend` or `depend` in your `plugin.yml`):
+
+```java
+MultiWorldEditLoader.load(this);
+```
+
+---
+
+### Available Wrappers
+
+The library includes several wrappers created with cross-version compatibility in mind:
+
+* **`VectorWrapper`**: Handles the removal/changes of the `Vector` class in WorldEdit v6/v7.
+* **`ClipboardWrapper`**: Abstracts clipboard vector methods (`getOrigin`, `getMinimumPoint`, `getMaximumPoint`, `getRegion`).
+* **`RegionWrapper`**: Standardizes region bounds retrieval methods across versions.
+* **`EditSessionWrapper`**: Manages session closing differences (sessions were not closeable in v6, but are required to be closed in v7 for block changes to reflect).
+* **`PasteBuilderWrapper`**: Standardizes paste builder operations and execution methods across WorldEdit v6 and v7.
+
+---
+
+### 1. Retrieve a Clipboard
+
+```java
+// Read the schematic file using the library for cross-compatibility
+final File schematicFile = new File("test.schematic");
+final ClipboardWrapper clipboard = MultiWorldEdit.getInstance().read(schematicFile);
+```
+
+### 2. Paste a Schematic
+
+```java
+// Target world, clipboard, and target coordinates
+final World world = ...;
+final Clipboard clipboard = ...;
+final int x = 0, y = 64, z = 0;
+
+// Using EditSessionWrapper (WARNING: Must be closed on v7 for block operations to complete)
+try (final EditSessionWrapper editSessionWrapper = MultiWorldEdit.getInstance()
+        .create(world, -1)) {
+    final EditSession editSession = editSessionWrapper.to();
+
+    final Operation operation = MultiWorldEdit.getInstance()
+            .create(clipboard, editSession, world)
+            .to(x, y, z)
+            .ignoreAirBlocks(true)
+            .build();
+
+    Operations.completeLegacy(operation);
+} catch (IOException e) {
+    throw new IllegalStateException(e);
+}
+```
+
+### 3. Working with Wrappers
+
+```java
+final Clipboard clipboard = ...;
+final ClipboardWrapper clipboardWrapper = MultiWorldEdit.getInstance().create(clipboard);
+
+// Retrieve the origin vector
+final VectorWrapper origin = clipboardWrapper.getOrigin();
+
+// Retrieve region boundaries safely
+final RegionWrapper regionWrapper = MultiWorldEdit.getInstance().create(clipboardWrapper.to().getRegion());
+final VectorWrapper maximumVector = regionWrapper.getMaximumPoint();
+```
+
+---
+
+## Contributing
+
+This library was primarily made for my personal projects, so it may not cover every edge case of the WorldEdit API. Contributions, bug reports, and pull requests are always welcome! Feel free to open an issue or submit a PR. :)
