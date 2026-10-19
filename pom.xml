@@ -8,9 +8,9 @@
     <packaging>pom</packaging>
 
     <scm>
-        <connection>scm:git:https://github.com/tofpu/MultiWorldEdit.git</connection>
-        <developerConnection>scm:git:git@github.com:tofpu/MultiWorldEdit.git</developerConnection>
-        <url>https://github.com/tofpu/MultiWorldEdit</url>
+        <connection>scm:git:https://github.com/Tofpu/MultiWorldEdit.git</connection>
+        <developerConnection>scm:git:git@github.com:Tofpu/MultiWorldEdit.git</developerConnection>
+        <url>https://github.com/Tofpu/MultiWorldEdit</url>
         <tag>HEAD</tag>
     </scm>
 
