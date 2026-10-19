@@ -9,6 +9,7 @@ import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.world.World;
 import com.sk89q.worldedit.world.registry.WorldData;
+import io.tofpu.multiworldedit.exception.ClipboardException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,9 +27,8 @@ public final class MultiWorldEditV6 implements MultiWorldEdit {
             }
             return create(clipboard);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw ClipboardException.fromFile(file, e);
         }
-        return null;
     }
 
     @Override
