@@ -19,8 +19,12 @@ public final class MultiWorldEditV6 implements MultiWorldEdit {
     @Override
     public ClipboardWrapper read(final File file) {
         try {
-            final FileInputStream inputStream = new FileInputStream(file);
-            return create(new SchematicReader(new NBTInputStream(new GZIPInputStream(inputStream))).read(null));
+            Clipboard clipboard;
+            try (FileInputStream inputStream = new FileInputStream(file)) {
+                SchematicReader schematicReader = new SchematicReader(new NBTInputStream(new GZIPInputStream(inputStream)));
+                clipboard = schematicReader.read(null);
+            }
+            return create(clipboard);
         } catch (IOException e) {
             e.printStackTrace();
         }

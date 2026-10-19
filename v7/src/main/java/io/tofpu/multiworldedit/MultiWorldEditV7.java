@@ -22,7 +22,11 @@ public final class MultiWorldEditV7 implements MultiWorldEdit {
             return null;
         }
         try {
-            return create(format.getReader(new FileInputStream(file)).read());
+            Clipboard clipboard;
+            try (FileInputStream inputStream = new FileInputStream(file)) {
+                clipboard = format.getReader(inputStream).read();
+            }
+            return create(clipboard);
         } catch (IOException e) {
             e.printStackTrace();
         }
